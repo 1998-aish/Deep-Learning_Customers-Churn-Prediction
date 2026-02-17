@@ -1,4 +1,6 @@
 📊 Customer Churn Prediction using Machine Learning & Deep Learning
+
+
 📌 Project Overview
 
 This project focuses on predicting customer churn using both traditional Machine Learning and Deep Learning models.
@@ -74,6 +76,7 @@ To prevent data leakage:
 Encoders and scalers were fitted only on training data.
 
 🤖 Models Implemented
+
 1️⃣ Logistic Regression (Baseline Model)
 
 Strong baseline for tabular data
