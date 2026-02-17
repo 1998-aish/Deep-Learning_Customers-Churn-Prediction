@@ -1,198 +1,159 @@
-📊 Customer Churn Prediction using Machine Learning & Deep Learning
+# 📊 Customer Churn Prediction – ML & Deep Learning
 
+## 📌 Project Overview
 
-📌 Project Overview
+This project predicts customer churn using Machine Learning and Deep Learning models.
 
-This project focuses on predicting customer churn using both traditional Machine Learning and Deep Learning models.
+The objective is to identify customers likely to leave so that proactive retention strategies can be applied.
 
-The objective is to identify customers likely to leave the company so that proactive retention strategies can be implemented.
+This project demonstrates:
 
-The project demonstrates:
+- End-to-end ML pipeline
+- Data preprocessing (encoding + scaling)
+- Handling imbalanced data
+- Model comparison
+- Threshold tuning
+- ROC & Precision–Recall analysis
 
-End-to-end ML pipeline
+---
 
-Proper data preprocessing (encoding + scaling)
+## 🎯 Problem Statement
 
-Handling imbalanced datasets
+Customer churn leads to revenue loss.  
+The goal is to predict whether a customer will churn.
 
-Model comparison (Logistic Regression vs Neural Network)
+This is a **binary classification problem**:
 
-Threshold tuning
+- `1` → Churn  
+- `0` → No Churn  
 
-ROC & Precision–Recall curve analysis
+Since churn represents ~26% of customers, recall is prioritized over raw accuracy.
 
-Business-driven model evaluation
+---
 
-🎯 Problem Statement
+## 🗂 Dataset
 
-Customer churn leads to revenue loss.
-The goal is to build a classification model that predicts whether a customer will churn.
+- Telco Customer Churn Dataset
+- ~7,000 customers
+- 20 features including:
+  - Demographics
+  - Contract details
+  - Service usage
+  - Monthly and total charges
 
-This is a binary classification problem:
+---
 
-1 → Churn
+## ⚙️ Data Preprocessing
 
-0 → No Churn
-
-Since churn represents ~26% of customers, the dataset is imbalanced.
-Therefore, recall for the churn class is prioritized over raw accuracy.
-
-🗂 Dataset
-
-Telco Customer Churn Dataset
-
-~7,000 customers
-
-20 features including:
-
-Demographics
-
-Service usage
-
-Contract details
-
-Monthly and total charges
-
-⚙️ Data Preprocessing
-
-The following steps were performed:
-
-Removed customerID
-
-Converted TotalCharges to numeric
-
-Dropped rows with missing values
-
-Converted target variable (Churn) to 0/1
-
-Train-test split using stratification
-
-One-Hot Encoding for categorical variables
-
-Standard Scaling for numeric features
+- Removed `customerID`
+- Converted `TotalCharges` to numeric
+- Dropped missing values
+- Encoded target variable (`Churn`) as 0/1
+- Stratified train-test split
+- One-Hot Encoding for categorical variables
+- Standard Scaling for numerical features
 
 To prevent data leakage:
+- Encoders and scalers were fitted only on training data.
 
-Encoders and scalers were fitted only on training data.
+---
 
-🤖 Models Implemented
+## 🤖 Models Implemented
 
-1️⃣ Logistic Regression (Baseline Model)
+### 1️⃣ Logistic Regression (Baseline)
 
-Strong baseline for tabular data
+- Strong tabular baseline
+- Interpretable and efficient
+- ~80% accuracy
+- Recall (Churn) ≈ 0.57
 
-Simple and interpretable
+---
 
-Achieved ~80% accuracy
-
-Recall for churn ≈ 0.57
-
-2️⃣ Neural Network (Deep Learning)
+### 2️⃣ Neural Network (Deep Learning)
 
 Architecture:
 
-Dense (ReLU)
-
-Dropout (regularization)
-
-Dense (ReLU)
-
-Dropout
-
-Output layer with Sigmoid
+- Dense (ReLU)
+- Dropout
+- Dense (ReLU)
+- Dropout
+- Output (Sigmoid)
 
 Training Setup:
 
-Binary Crossentropy loss
+- Loss: Binary Crossentropy
+- Optimizer: Adam
+- Early stopping
+- Batch size = 32
 
-Adam optimizer
+Results:
 
-Early stopping
+- Accuracy ≈ 80%
+- Lowering threshold improved recall to ~0.78
+- Trade-off between precision and recall observed
 
-Batch size = 32
+---
 
-Neural Network Results:
+## 📊 Evaluation Metrics
 
-Accuracy ≈ 80%
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion Matrix
+- ROC Curve
+- Precision–Recall Curve
 
-Threshold tuning improved recall from 0.54 → 0.78
+Primary Business Metric:
 
-Trade-off observed between recall and precision
+> Recall for churn class (to reduce missed churners)
 
-📈 Evaluation Metrics
+---
 
-The models were evaluated using:
+## 📈 ROC & Precision–Recall Analysis
 
-Accuracy
+- ROC Curve measures class separation ability.
+- AUC close to 1 indicates better performance.
+- Precision–Recall Curve is more informative for imbalanced data.
+- Threshold tuning improves business-focused performance.
 
-Precision
+---
 
-Recall
+## 🧠 Key Insights
 
-F1-score
+- Logistic Regression performed competitively.
+- Deep Learning did not significantly outperform baseline.
+- Threshold tuning improved churn recall.
+- Business metrics are more important than raw accuracy.
+- Deep Learning is not always superior for structured tabular data.
 
-Confusion Matrix
+---
 
-ROC Curve
+## 🛠 Tech Stack
 
-Precision–Recall Curve
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- TensorFlow / Keras
+- Matplotlib
 
-Primary business metric:
+---
 
-Recall for churn class (to minimize missed churners)
+## 📁 Project Structure
 
-📊 ROC & Precision–Recall Analysis
+```
+churn-prediction-ml/
+│
+├── data/
+├── notebook/
+├── images/
+├── README.md
+```
 
-ROC Curve:
+---
 
-Measures model’s ability to separate churn vs non-churn
+## 👨‍💻 Author
 
-AUC used for overall comparison
-
-Precision–Recall Curve:
-
-More informative for imbalanced datasets
-
-Helps determine optimal classification threshold
-
-Threshold tuning was performed to balance recall and precision.
-
-🧠 Key Insights
-
-Logistic Regression performed competitively on tabular data.
-
-Deep Learning did not significantly outperform the baseline.
-
-Lowering classification threshold increased recall substantially.
-
-Business priorities determine the optimal threshold.
-
-Deep Learning is not always superior for structured tabular datasets.
-
-💼 Business Recommendation
-
-For this dataset, Logistic Regression is recommended because:
-
-Comparable performance
-
-Better interpretability
-
-Lower computational cost
-
-Easier deployment
-
-Deep Learning adds complexity without significant improvement.
-
-🛠 Tech Stack
-
-Python
-
-Pandas
-
-NumPy
-
-Scikit-learn
-
-TensorFlow / Keras
-
-Matplotlib
+Aish  
+Data Science & Machine Learning Enthusiast
